@@ -1,0 +1,30 @@
+<html>
+    <head>
+        <title>Highlight.js Preview Tool</title>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/styles/dark.min.css">
+    </head>
+    <body class="hljs">
+    
+<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.7.1/highlight.min.js"></script>
+<script>
+    function createExamples() {
+        document.getElementById('examples').innerHTML = '';
+        let langs = hljs.listLanguages()
+        console.log(langs)
+        langs.forEach( lang => {
+            let div = document.createElement('div');
+            div.innerHTML = `<h3>${lang}</h3><pre style="border: 1px dashed red; border-left: 6px solid red"><code class="${lang}"></code></pre>`;
+            div.getElementsByTagName('code')[0].innerText = document.getElementById('code-sample').value
+            document.getElementById('examples').appendChild(div);
+            });
+        hljs.highlightAll();
+    }
+</script>
+<h2>Highlight.js Preview Tool</h2>
+<textarea id="code-sample" name="code-sample" rows="12" cols="95">
+// Paste Sample Code Here...
+</textarea>
+<button onClick="createExamples()">Do it!</button>
+<div id="examples"></div>
+</body>
+</html>
